@@ -1,0 +1,7 @@
+---
+:orm: mongomatic
+:test: cucumber
+:mock: mocha
+:script: jquery
+:renderer: haml
+:stylesheet: sass
