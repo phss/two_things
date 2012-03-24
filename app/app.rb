@@ -6,10 +6,4 @@ class TwoThings < Padrino::Application
 
   enable :sessions
 
-  get "/" do
-    @entries = Entry.find
-
-    haml :list
-  end
-
 end
