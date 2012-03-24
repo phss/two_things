@@ -1,0 +1,11 @@
+!!! Strict
+%html
+  %head
+    %title Two Things
+    = javascript_include_tag 'jquery', 'application'
+    = yield_content :include
+  %body
+    #header
+      %h1 Two Things
+    #container
+      #main= yield
