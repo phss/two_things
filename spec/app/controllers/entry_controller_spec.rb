@@ -1,12 +1,10 @@
 require 'spec_helper'
+require 'hack_rack_test'
 
 describe "EntryController" do
-  before do
+  it "should return all existing entries" do
     get "/"
-  end
 
-  it "returns hello world" do
-    pending
-    last_response.body.should == "Hello World"
+    last_response.template.should == "/list"
   end
 end
