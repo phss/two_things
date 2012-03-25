@@ -15,7 +15,7 @@ class Rack::MockResponse
   alias_method :initialize, :initialize_with_variables
 
   def assigns(name)
-    variables["@#{name}"]
+    variables["@#{name.to_s}"]
   end
 end
 
