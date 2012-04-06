@@ -23,3 +23,14 @@ Feature: Submitting entries
       | topic    | first            | second        | source | link |
       | minimal  | this has less    | less is more  |        |      |          
 
+  Scenario: Submitting an entry with missing fields
+    Given no saved entries
+     And I visit the home page
+    When I submit a new entry with  
+      | topic    | first | second |
+      |          |       |        |          
+    Then I should see following validation errors
+      | Topic cannot be blank        |
+      | First thing cannot be blank  |
+      | Second thing cannot be blank |
+

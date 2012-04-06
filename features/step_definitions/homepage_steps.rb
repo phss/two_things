@@ -17,3 +17,6 @@ Then /^I should see displayed the following entries$/ do |table|
   end
 end
 
+Then /^I should see following validation errors$/ do |table|
+  pending
+end
