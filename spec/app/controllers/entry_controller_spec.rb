@@ -21,10 +21,21 @@ describe 'EntryController' do
   describe '(POST submit)' do
     it 'should create a new entry and redirect to listing entries' do
       entry_params = { :topic => 'a', :first => 'b', :second => 'c' }
+
       post '/entry/submit', :entry => entry_params
 
       last_response.should be_redirect
       Entry.find.first.should match_params(entry_params)
+    end
+
+    it 'should re-render submit page when entry validation fails' do
+      entry_params = { :topic => 'rest is missing' }
+      
+      post '/entry/submit', :entry => entry_params
+
+      last_response.template.should == '/submit'
+      last_response.assigns(:entry).should match_params(entry_params)
+      Entry.empty?.should be_true
     end
   end
 

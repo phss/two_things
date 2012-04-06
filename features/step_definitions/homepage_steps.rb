@@ -18,5 +18,7 @@ Then /^I should see displayed the following entries$/ do |table|
 end
 
 Then /^I should see following validation errors$/ do |table|
-  pending
+  table.rows.flatten.each do |error|
+    find('.errors').should have_content(error)
+  end
 end

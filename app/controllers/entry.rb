@@ -7,11 +7,17 @@ TwoThings.controllers :entry do
   end 
  
   get :submit do
+    @entry = Entry.new
     render 'submit'
   end
 
   post :submit do
-    entry = Entry.new(params[:entry]).insert
-    redirect url(:entry, :list)
+    @entry = Entry.new(params[:entry])
+
+    if @entry.valid? && @entry.insert
+      redirect url(:entry, :list)
+    else
+      render 'submit'
+    end
   end
 end

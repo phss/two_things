@@ -1,5 +1,12 @@
+- unless @entry.errors.full_messages.empty?
+  .errors
+    %h2 Errors
+    %ul
+      - @entry.errors.full_messages.each do |error|
+        %li= error
+
 .entry
-  - form_for :entry, url_for(:entry, :submit), :id => 'register' do |f|
+  - form_for @entry, url_for(:entry, :submit), :id => 'register' do |f|
     = f.text_field_block :topic
     = f.text_field_block :first
     = f.text_field_block :second
