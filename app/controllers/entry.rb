@@ -8,6 +8,7 @@ TwoThings.controllers :entry do
  
   get :submit do
     @entry = Entry.new
+    
     render 'submit'
   end
 
