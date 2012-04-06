@@ -5,5 +5,4 @@ class TwoThings < Padrino::Application
   register Padrino::Helpers
 
   enable :sessions
-
 end

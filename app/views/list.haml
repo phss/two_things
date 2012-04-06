@@ -1,3 +1,5 @@
+= link_to 'Submit', url_for(:entry, :submit)
+
 - @entries.each_with_index do |entry, i|
   %div{:class => "entry_#{i}"}
     #topic= entry.topic

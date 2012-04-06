@@ -6,8 +6,8 @@ When /^I submit a new entry with$/ do |table|
   entry = table.hashes.first
 
   click_link "Submit"
-  entry.each_with_index { |name, value| fill_in name, :with => value }
-  click_link "Save"
+  entry.each { |name, value| fill_in "entry_#{name}", :with => value }
+  click_button "Save"
 end
 
 Then /^I should see displayed the following entries$/ do |table|
