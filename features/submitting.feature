@@ -12,3 +12,14 @@ Feature: Submitting entries
     Then I should see displayed the following entries
       | topic    | first            | second           | source  | link                         |
       | entering | entering is hard | entering is easy | awesome | http://enter.the.dragon.com  |          
+
+  Scenario: Submitting a minimal entry
+    Given no saved entries
+     And I visit the home page
+    When I submit a new entry with  
+      | topic    | first            | second        |
+      | minimal  | this has less    | less is more  |          
+    Then I should see displayed the following entries
+      | topic    | first            | second        | source | link |
+      | minimal  | this has less    | less is more  |        |      |          
+
