@@ -20,11 +20,20 @@ describe 'EntryController' do
 
   describe '(POST submit)' do
     it 'should create a new entry and redirect to listing entries' do
-      post '/entry/submit', :entry => { :topic => 'a', :first => 'b', :second => 'c' }
+      entry_params = { :topic => 'a', :first => 'b', :second => 'c' }
+      post '/entry/submit', :entry => entry_params
 
-      puts last_response.methods
-      
-      Entry.find.first.topic.should == 'a'
+      last_response.should be_redirect
+      Entry.find.first.should match_params(entry_params)
+    end
+  end
+
+  RSpec::Matchers.define :match_params do |expected|
+    match do |actual|
+      expected.each do |attribute, expected_value|
+        return false unless actual[attribute.to_s] == expected_value
+      end
+      true
     end
   end
 
