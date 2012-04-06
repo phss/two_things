@@ -2,9 +2,7 @@ class Entry < Mongomatic::Base
   include Mongomatic::Expectations::Helper
 
   %w{topic first second source link}.each do |attribute|
-    define_method attribute do
-      self[attribute]
-    end
+    define_method(attribute) { self[attribute] }
   end
 
   def validate
