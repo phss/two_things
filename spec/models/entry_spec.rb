@@ -22,6 +22,7 @@ describe "Entry Model" do
       invalid_entry = Entry.new()
 
       invalid_entry.valid?.should be_false
+      invalid_entry.errors.full_messages.should =~ ['Topic cannot be blank', 'First thing cannot be blank', 'Second thing cannot be blank']
     end
   end
 end
