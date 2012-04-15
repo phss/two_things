@@ -6,11 +6,14 @@
 
     %title Two Things
     = javascript_include_tag 'jquery', 'application', 'tabs'
-    = stylesheet_link_tag 'base', 'skeleton', 'layout'
+    = stylesheet_link_tag 'base', 'skeleton', 'layout', 'two_things'
     = yield_content :include
   %body
-    .container
-      .header.sixteen.columns
-        %h1 Two Things
-      .main.sixteen.columns
-        = yield
+    .header
+      .container
+        .title.sixteen.columns
+          %h1 Two Things
+    .content
+      .container
+        .main.sixteen.columns
+          = yield

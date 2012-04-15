@@ -1,9 +1,16 @@
-= link_to 'Submit', url_for(:entry, :submit)
+.menu
+  = link_to 'Submit', url_for(:entry, :submit)
 
-- @entries.each_with_index do |entry, i|
-  %div{:class => "entry_#{i}"}
-    #topic= entry.topic
-    #first= entry.first
-    #second= entry.second
-    #source= entry.source
-    #link= entry.link
+.entries
+  - @entries.each_with_index do |entry, i|
+    %div{:id => "entry_#{i}", :class => 'entry'}
+      .topic= entry.topic
+      .first
+        %span{:class => 'thing'} 1.
+        = entry.first
+      .second
+        %span{:class => 'thing'} 2.
+        = entry.second
+      .source
+        = "By #{entry.source}. Source: "
+        %a{:href => entry.link, :class => 'link'}= entry.link

@@ -1,0 +1,33 @@
+/*.header {
+  background: #64ABD0;
+}
+.main {
+  background: #fff;
+}
+.title {
+  background: #3C9DD0;
+}*/
+
+.title h1 {
+  color: #FF8B00;
+}
+
+.entry {
+  margin-top: 20px;
+}
+
+.topic {
+  color: #034569;
+  font-weight: bold;
+}
+
+.thing {
+  color: #3C9DD0;
+  font-weight: bold;
+}
+
+.source, .source a {
+  color: #aaa; 
+  font-style: italic;
+  font-size: 0.9em;
+}
