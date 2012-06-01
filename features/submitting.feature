@@ -3,7 +3,7 @@ Feature: Submitting entries
   As a vain user
   I want to be able to submit two things entries
 
-  Scenario: Submitting a complete entry
+  Scenario: Submitting an entry with all fields
     Given no saved entries
      And I visit the home page
     When I submit a new entry with  
@@ -13,7 +13,7 @@ Feature: Submitting entries
       | topic    | first            | second           | source  | link                         |
       | entering | entering is hard | entering is easy | awesome | http://enter.the.dragon.com  |          
 
-  Scenario: Submitting a minimal entry
+  Scenario: Submitting an entry with only required fields
     Given no saved entries
      And I visit the home page
     When I submit a new entry with  
@@ -23,7 +23,7 @@ Feature: Submitting entries
       | topic    | first            | second        | source | link |
       | minimal  | this has less    | less is more  |        |      |          
 
-  Scenario: Submitting an entry with missing fields
+  Scenario: Submitting an entry without any field
     Given no saved entries
      And I visit the home page
     When I submit a new entry with  
