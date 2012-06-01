@@ -7,9 +7,9 @@ class Entry < Mongomatic::Base
 
   def validate
     expectations do
-      be_present self['topic'], 'Topic cannot be blank'
-      be_present self['first'], 'First thing cannot be blank'
-      be_present self['second'], 'Second thing cannot be blank'
+      be_present topic, 'Topic cannot be blank'
+      be_present first, 'First thing cannot be blank'
+      be_present second, 'Second thing cannot be blank'
     end
   end
 

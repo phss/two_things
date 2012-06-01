@@ -18,7 +18,7 @@ describe "Entry Model" do
       entry.valid?.should be_true
     end
 
-    it 'should only fail valiation for topic, first and second fields' do
+    it 'should require topic, first and second fields to be populated' do
       invalid_entry = Entry.new()
 
       invalid_entry.valid?.should be_false
