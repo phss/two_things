@@ -1,8 +1,8 @@
 class Entry < Mongomatic::Base
   include Mongomatic::Expectations::Helper
 
-  def self.insert_from(params)
-    entry = Entry.new(params)
+  def self.insert_from(hash)
+    entry = Entry.new(hash)
     entry.insert
     return entry
   end
