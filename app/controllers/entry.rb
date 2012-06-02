@@ -13,9 +13,9 @@ TwoThings.controllers :entry do
   end
 
   post :submit do
-    @entry = Entry.new(params[:entry])
+    @entry = Entry.insert_from(params[:entry])
 
-    if @entry.valid? && @entry.insert
+    if @entry.valid?
       redirect url(:entry, :list)
     else
       render 'submit'

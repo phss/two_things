@@ -2,55 +2,47 @@ require 'spec_helper'
 require 'hack_to_add_assigned_variables_and_template_to_last_response'
 
 describe 'EntryController' do
-  before do
-    Entry.collection.remove
-  end
-
+  
   describe '(GET list)' do
     it 'should return all existing entries' do
-      entry1 = saved_entry('topic' => 't1', 'first' => 'f1', 'second' => 's1', 'source' => 's1', 'link' => 'l1')
-      entry2 = saved_entry('topic' => 't2', 'first' => 'f2', 'second' => 's2', 'source' => 's2', 'link' => 'l2')
+      existing_entries = [Entry.new('_id' => 1), Entry.new('_id' => 2)]
+
+      Entry.expects(:find).returns(existing_entries)
 
       get '/'
 
       last_response.template.should == '/list'
-      last_response.assigns(:entries).to_a.should == [entry1, entry2]
+      last_response.assigns(:entries).to_a.should == existing_entries
     end
   end
 
   describe '(POST submit)' do
     it 'should create a new entry and redirect to listing entries' do
-      entry_params = { :topic => 'a', :first => 'b', :second => 'c' }
+      entry_params = { 'topic' => 'a', 'first' => 'b', 'second' => 'c' }
+
+      Entry.expects(:insert_from).with(entry_params).returns(entry_is_valid(true))
 
       post '/entry/submit', :entry => entry_params
 
       last_response.should be_redirect
-      Entry.find.first.should match_params(entry_params)
     end
 
     it 'should re-render submit page when entry validation fails' do
-      entry_params = { :topic => 'rest is missing' }
+      entry_params = { 'topic' => 'rest is missing' }
+      invalid_entry = entry_is_valid(false)
+
+      Entry.expects(:insert_from).with(entry_params).returns(invalid_entry)
       
       post '/entry/submit', :entry => entry_params
 
       last_response.template.should == '/submit'
-      last_response.assigns(:entry).should match_params(entry_params)
-      Entry.empty?.should be_true
+      last_response.assigns(:entry).should == invalid_entry
     end
-  end
 
-  RSpec::Matchers.define :match_params do |expected|
-    match do |actual|
-      expected.each do |attribute, expected_value|
-        return false unless actual[attribute.to_s] == expected_value
-      end
-      true
+    def entry_is_valid(valid)
+      entry = mock()
+      entry.expects(:valid?).returns(valid) 
+      return entry
     end
-  end
-
-  def saved_entry(data)
-    entry = Entry.new(data)
-    entry.insert
-    return entry
   end
 end

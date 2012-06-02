@@ -1,6 +1,12 @@
 class Entry < Mongomatic::Base
   include Mongomatic::Expectations::Helper
 
+  def self.insert_from(params)
+    entry = Entry.new(params)
+    entry.insert
+    return entry
+  end
+
   %w{topic first second source link}.each do |attribute|
     define_method(attribute) { self[attribute] }
   end

@@ -11,6 +11,26 @@ describe "Entry Model" do
     entry.link.should == 'l1'
   end
 
+  describe '(persistence insertion)' do
+    it 'should insert a valid entry from params' do
+      valid_params = { 'topic' => 'some topic', 'first' => 'first thing', 'second' => 'second thing' }
+
+      new_entry = Entry.insert_from(valid_params)
+      
+      new_entry.valid?.should be_true
+      new_entry.is_new?.should be_false
+    end
+    
+    it 'should not insert an invalid entry from params' do
+      invalid_params = { 'topic' => 'invalid entry', 'first' => 'has only one thing' }
+
+      new_entry = Entry.insert_from(invalid_params)
+      
+      new_entry.valid?.should be_false
+      new_entry.is_new?.should be_true
+    end    
+  end
+
   describe '(validations)' do
     it 'should be valid when all fields are populated' do
       entry = Entry.new('topic' => 't1', 'first' => 'f1', 'second' => 's1', 'source' => 's1', 'link' => 'l1')
