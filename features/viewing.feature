@@ -5,8 +5,8 @@ Feature: Viewing entries
 
   Scenario: Viewing a single entry with all fields
     Given the existing entries
-      | topic   | first           | second          | source | link                   |
-      | testing | testing is hard | testing is easy | tester | http://tester.link.com |
+      | topic   | first           | second          | created_by | source                 |
+      | testing | testing is hard | testing is easy | tester     | http://tester.link.com |
     When I visit the home page
     Then I should see displayed the following entries
       | topic   | first           | second          | meta                                      |

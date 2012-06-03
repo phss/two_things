@@ -7,8 +7,8 @@ Feature: Submitting entries
     Given no saved entries
      And I visit the home page
     When I submit a new entry with  
-      | topic    | first            | second           | source  | link                         |
-      | entering | entering is hard | entering is easy | awesome | http://enter.the.dragon.com  |    
+      | topic    | first            | second           | created_by  | source                       |
+      | entering | entering is hard | entering is easy | awesome     | http://enter.the.dragon.com  |    
     Then I should see displayed the following entries
       | topic    | first            | second           | meta                                             |
       | entering | entering is hard | entering is easy | By awesome. Source: http://enter.the.dragon.com  |          

@@ -1,7 +1,7 @@
 class Entry < Mongomatic::Base
   include Mongomatic::Expectations::Helper
 
-  %w{topic first second source link}.each do |attribute|
+  %w{topic first second created_by source}.each do |attribute|
     define_method(attribute) { self[attribute] }
   end
 
