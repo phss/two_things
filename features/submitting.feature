@@ -10,8 +10,8 @@ Feature: Submitting entries
       | topic    | first            | second           | source  | link                         |
       | entering | entering is hard | entering is easy | awesome | http://enter.the.dragon.com  |    
     Then I should see displayed the following entries
-      | topic    | first            | second           | source  | link                         |
-      | entering | entering is hard | entering is easy | awesome | http://enter.the.dragon.com  |          
+      | topic    | first            | second           | meta                                             |
+      | entering | entering is hard | entering is easy | By awesome. Source: http://enter.the.dragon.com  |          
 
   Scenario: Submitting an entry with only required fields
     Given no saved entries
@@ -20,8 +20,8 @@ Feature: Submitting entries
       | topic    | first            | second        |
       | minimal  | this has less    | less is more  |          
     Then I should see displayed the following entries
-      | topic    | first            | second        | source | link |
-      | minimal  | this has less    | less is more  |        |      |          
+      | topic    | first            | second        |
+      | minimal  | this has less    | less is more  |
 
   Scenario: Submitting an entry without any field
     Given no saved entries

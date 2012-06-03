@@ -26,7 +26,7 @@
   font-weight: bold;
 }
 
-.source, .source a {
+.meta, .meta a {
   color: #aaa; 
   font-style: italic;
   font-size: 0.9em;
