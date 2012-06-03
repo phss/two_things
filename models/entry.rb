@@ -24,6 +24,10 @@ class Entry < Mongomatic::Base
       entry.insert
       return entry
     end
+
+    def all_ordered_by_creation
+      find({}, { :sort => ['created_at', :ascending] })
+    end
     
   end
 

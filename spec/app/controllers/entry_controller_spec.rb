@@ -7,7 +7,7 @@ describe 'EntryController' do
     it 'should return all existing entries' do
       existing_entries = [Entry.new('_id' => 1), Entry.new('_id' => 2)]
 
-      Entry.expects(:find).returns(existing_entries)
+      Entry.expects(:all_ordered_by_creation).returns(existing_entries)
 
       get '/'
 

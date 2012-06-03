@@ -27,7 +27,9 @@ describe "Entry Model" do
     end
   end
 
-  describe '(persistence insertion)' do
+  describe '(persistence - integration)' do
+    before { Entry.collection.remove() }
+
     it 'should insert a valid entry from params' do
       new_entry = Entry.insert_from(minimum_fields)
       
@@ -44,6 +46,14 @@ describe "Entry Model" do
       new_entry.valid?.should be_false
       new_entry.is_new?.should be_true
     end    
+
+    it 'finds all entries ordered by creation time' do
+      first = Entry.insert_from(minimum_fields.merge('topic' => 'first', 'created_at' => Chronic.parse('2012-01-01')))
+      third = Entry.insert_from(minimum_fields.merge('topic' => 'third', 'created_at' => Chronic.parse('2012-01-03')))
+      second = Entry.insert_from(minimum_fields.merge('topic' => 'second', 'created_at' => Chronic.parse('2012-01-02')))
+
+      Entry.all_ordered_by_creation.to_a.should == [first, second, third]
+    end
   end
 
   describe '(validations)' do

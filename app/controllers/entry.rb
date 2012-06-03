@@ -1,7 +1,7 @@
 TwoThings.controllers :entry do
 
   get :list, :map => "/" do
-    @entries = Entry.find
+    @entries = Entry.all_ordered_by_creation
 
     render 'list'
   end 
