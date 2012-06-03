@@ -12,5 +12,5 @@
         %span{:class => 'thing'} 2.
         = entry.second
       .meta
-        = "By #{entry.created_by}. Source: "
+        = "By #{entry.created_by} on #{entry.created_at.strftime("%d %b %Y")}. Source: "
         %a{:href => entry.source, :class => 'link'}= entry.source

@@ -1,7 +1,11 @@
 class Entry < Mongomatic::Base
   include Mongomatic::Expectations::Helper
 
-  %w{topic first second created_by source}.each do |attribute|
+  def after_initialize
+    self['created_at'] = Time.now if created_at.nil?
+  end
+
+  %w{topic first second created_by source created_at}.each do |attribute|
     define_method(attribute) { self[attribute] }
   end
 

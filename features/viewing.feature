@@ -5,9 +5,9 @@ Feature: Viewing entries
 
   Scenario: Viewing a single entry with all fields
     Given the existing entries
-      | topic   | first           | second          | created_by | source                 |
-      | testing | testing is hard | testing is easy | tester     | http://tester.link.com |
+      | topic   | first           | second          | created_by | source                 | created_at          |
+      | testing | testing is hard | testing is easy | tester     | http://tester.link.com | 2012-04-16 10:51:32 |
     When I visit the home page
     Then I should see displayed the following entries
-      | topic   | first           | second          | meta                                      |
-      | testing | testing is hard | testing is easy | By tester. Source: http://tester.link.com |
+      | topic   | first           | second          | meta                                                      |
+      | testing | testing is hard | testing is easy | By tester on 16 Apr 2012. Source: http://tester.link.com  |

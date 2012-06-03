@@ -3,6 +3,8 @@ When /^I visit the home page$/ do
 end
 
 When /^I submit a new entry with$/ do |table|
+  step 'I visit the home page'
+
   entry = table.hashes.first
 
   click_link "Submit"
