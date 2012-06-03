@@ -24,3 +24,16 @@ Feature: Viewing entries
       | first  |
       | second |
       | third  |
+
+  Scenario: Viewing entries without optional fields
+    Given the existing entries
+      | topic        | first        | second       | created_by | source            | created_at          |
+      | no optionals | no optionals | no optionals |            |                   | 2012-01-01 12:00:00 |
+      | no creator   | no creator   | no creator   |            | http://no.creator | 2012-02-01 12:00:00 |
+      | no source    | no source    | no optionals | no source  |                   | 2012-03-01 12:00:00 |
+    When I visit the home page
+    Then I should see displayed the following entries
+      | topic        | meta                                      |
+      | no optionals | On 01 Jan 2012.                           |
+      | no creator   | On 01 Feb 2012. Source: http://no.creator |
+      | no source    | By no source on 01 Mar 2012.              |
