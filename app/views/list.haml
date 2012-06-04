@@ -1,5 +1,7 @@
 .menu
-  = link_to 'Submit', url_for(:entry, :submit)
+  = link_to 'Submit', url_for(:entry, :submit), :id => 'new_entry'
+
+#entryPopup
 
 .entries
   - @entries.each_with_index do |entry, i|

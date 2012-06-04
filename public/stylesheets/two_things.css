@@ -31,3 +31,7 @@
   font-style: italic;
   font-size: 0.9em;
 }
+
+#entryPopup {
+  display: none;
+}

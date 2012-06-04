@@ -6,10 +6,10 @@
         %li= error
 
 .entry
-  - form_for @entry, url_for(:entry, :submit), :id => 'register' do |f|
+  - form_for @entry, url_for(:entry, :submit), :id => 'submit_form' do |f|
     = f.text_field_block :topic
     = f.text_field_block :first
     = f.text_field_block :second
     = f.text_field_block :created_by
     = f.text_field_block :source
-    = f.submit_block 'Save', :class => 'button'
+    = f.submit_block 'Save', :class => 'button', :id => 'submit_entry'
